@@ -1,0 +1,24 @@
+# Blender MTL File: 'maleMin.blend'
+# Material Count: 2
+
+newmtl DefaultSkin
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.827600 0.630100 0.506200
+Ks 0.300000 0.300000 0.300000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+
+newmtl Eye_brown
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 0.000000
+illum 2
+map_Kd textures\brown_eye.png
+map_d textures\\brown_eye.png
