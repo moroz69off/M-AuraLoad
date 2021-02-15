@@ -35,7 +35,7 @@ namespace M_AuraLoad_F7
         public AForm()
         {
             InitializeComponent();
-            LoadHuman(isMale);
+            //LoadHuman(isMale);
             LoadAura();
         }
 
@@ -98,15 +98,15 @@ namespace M_AuraLoad_F7
 
         private void LoadAura()
         {
-            Sphere sphereAura = new Sphere();
-            sphereAura.QuadricDrawStyle = DrawStyle.Line;
-            sphereAura.Transformation.ScaleX = 4f;
-            sphereAura.Transformation.ScaleY = 4f;
-            sphereAura.Transformation.ScaleZ = 6f;
-            sphereAura.AddEffect(arcBallEffect);
-            int stacks = sphereAura.Stacks;
-            sphereAura.Material = auraMaterial;
-            sceneControl.Scene.SceneContainer.AddChild(sphereAura);
+            //Sphere sphereAura = new Sphere();
+            //sphereAura.QuadricDrawStyle = DrawStyle.Line;
+            //sphereAura.Transformation.ScaleX = 4f;
+            //sphereAura.Transformation.ScaleY = 4f;
+            //sphereAura.Transformation.ScaleZ = 6f;
+            //sphereAura.AddEffect(arcBallEffect);
+            //int stacks = sphereAura.Stacks;
+            //sphereAura.Material = auraMaterial;
+            //sceneControl.Scene.SceneContainer.AddChild(sphereAura);
         }
 
         #region mouse events
