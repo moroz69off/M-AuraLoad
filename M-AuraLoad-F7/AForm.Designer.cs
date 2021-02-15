@@ -45,6 +45,7 @@ namespace M_AuraLoad_F7
             this.sceneControl.RenderTrigger = SharpGL.RenderTrigger.TimerBased;
             this.sceneControl.Size = new System.Drawing.Size(914, 614);
             this.sceneControl.TabIndex = 6;
+            this.sceneControl.OpenGLDraw += new SharpGL.RenderEventHandler(this.sceneControl_OpenGLDraw);
             this.sceneControl.Load += new System.EventHandler(this.sceneControl_Load);
             this.sceneControl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.sceneControl_MouseDown);
             this.sceneControl.MouseMove += new System.Windows.Forms.MouseEventHandler(this.sceneControl_MouseMove);

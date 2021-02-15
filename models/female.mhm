@@ -1,0 +1,53 @@
+# Written by MakeHuman HEAD:c28443c2
+version v1.2.0
+name Female
+camera 3.0 349.0 1.0 0.22 0.0 1.0
+modifier torso/torso-scale-horiz-decr|incr 0.010000
+modifier torso/torso-scale-vert-decr|incr -0.112000
+modifier torso/torso-trans-backward|forward 0.038000
+modifier torso/torso-vshape-decr|incr 0.010000
+modifier torso/torso-muscle-dorsi-decr|incr -0.140000
+modifier torso/torso-muscle-pectoral-decr|incr 0.066000
+modifier hip/hip-scale-horiz-decr|incr 0.196000
+modifier hip/hip-scale-vert-decr|incr -0.524000
+modifier hip/hip-waist-down|up 0.364000
+modifier stomach/stomach-navel-in|out -0.010000
+modifier stomach/stomach-tone-decr|incr -0.364000
+modifier stomach/stomach-navel-down|up 0.402000
+modifier buttocks/buttocks-volume-decr|incr 0.300000
+modifier pelvis/pelvis-tone-decr|incr -0.206000
+modifier pelvis/bulge-decr|incr -0.758000
+modifier armslegs/r-hand-trans-in|out -0.010000
+modifier breast/BreastSize 0.636000
+modifier breast/BreastFirmness 0.794000
+modifier breast/breast-trans-down|up 0.748000
+modifier breast/breast-dist-decr|incr 0.158000
+modifier breast/breast-volume-vert-down|up -0.356000
+modifier breast/nipple-size-decr|incr -0.018000
+modifier breast/nipple-point-decr|incr 0.010000
+modifier macrodetails/Gender 0.000000
+modifier macrodetails/Age 0.472000
+modifier macrodetails/African 0.056000
+modifier macrodetails/Asian 0.056000
+modifier macrodetails/Caucasian 0.888000
+modifier macrodetails-universal/Muscle 0.500000
+modifier macrodetails-universal/Weight 0.449000
+modifier macrodetails-height/Height 0.481000
+modifier macrodetails-proportions/BodyProportions 0.416000
+modifier measure/measure-frontchest-dist-decr|incr 0.112000
+modifier measure/measure-bust-circ-decr|incr 0.196000
+modifier measure/measure-underbust-circ-decr|incr -0.214000
+modifier measure/measure-waist-circ-decr|incr -0.038000
+modifier measure/measure-napetowaist-dist-decr|incr -0.056000
+modifier measure/measure-waisttohip-dist-decr|incr -0.010000
+modifier measure/measure-shoulder-dist-decr|incr -0.402000
+modifier measure/measure-hips-circ-decr|incr 0.018000
+modifier measure/measure-knee-circ-decr|incr 0.028000
+hair ponytail01 44e0340e-c7a6-4d22-814c-0632968d2dde
+eyes HighPolyEyes 2c12f43b-1303-432c-b7ce-d78346baf2e6
+pose standing02.bvh
+clothesHideFaces True
+skinMaterial skins/middleage_caucasian_female/middleage_caucasian_female.mhmat
+material ponytail01 44e0340e-c7a6-4d22-814c-0632968d2dde ponytail01.mhmat
+material HighPolyEyes 2c12f43b-1303-432c-b7ce-d78346baf2e6 eyes/materials/brown.mhmat
+subdivide False

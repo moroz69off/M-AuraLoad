@@ -1,0 +1,42 @@
+# Written by MakeHuman HEAD:c28443c2
+version v1.2.0
+name maleMinOrig
+camera 0.0 0.0 -0.0984253256376029 0.21835047673380115 1.0 1.0
+modifier torso/torso-scale-depth-decr|incr -0.242000
+modifier torso/torso-scale-horiz-decr|incr -0.262000
+modifier torso/torso-scale-vert-decr|incr -0.150000
+modifier torso/torso-trans-in|out -0.018000
+modifier torso/torso-vshape-decr|incr 0.028000
+modifier torso/torso-muscle-dorsi-decr|incr -0.150000
+modifier torso/torso-muscle-pectoral-decr|incr -0.056000
+modifier hip/hip-scale-depth-decr|incr -0.038000
+modifier hip/hip-scale-horiz-decr|incr 0.046000
+modifier hip/hip-scale-vert-decr|incr 0.252000
+modifier hip/hip-trans-in|out -0.010000
+modifier hip/hip-waist-down|up 0.010000
+modifier stomach/stomach-navel-in|out 0.028000
+modifier stomach/stomach-tone-decr|incr -0.448000
+modifier stomach/stomach-navel-down|up -0.318000
+modifier pelvis/pelvis-tone-decr|incr -0.468000
+modifier pelvis/bulge-decr|incr -0.728000
+modifier breast/BreastSize 0.687000
+modifier breast/BreastFirmness 0.682000
+modifier breast/breast-trans-down|up 0.384000
+modifier breast/breast-dist-decr|incr 0.158000
+modifier macrodetails/Gender 0.000000
+modifier macrodetails/Age 0.500000
+modifier macrodetails/African 0.000000
+modifier macrodetails/Asian 0.336000
+modifier macrodetails/Caucasian 0.664000
+modifier macrodetails-universal/Muscle 0.388000
+modifier macrodetails-universal/Weight 0.379000
+modifier macrodetails-height/Height 0.397000
+modifier macrodetails-proportions/BodyProportions 0.355000
+hair ponytail01 44e0340e-c7a6-4d22-814c-0632968d2dde
+eyes HighPolyEyes 2c12f43b-1303-432c-b7ce-d78346baf2e6
+pose standing02.bvh
+clothesHideFaces True
+skinMaterial skins/middleage_caucasian_female/middleage_caucasian_female.mhmat
+material ponytail01 44e0340e-c7a6-4d22-814c-0632968d2dde ponytail01.mhmat
+material HighPolyEyes 2c12f43b-1303-432c-b7ce-d78346baf2e6 eyes/materials/brown.mhmat
+subdivide False

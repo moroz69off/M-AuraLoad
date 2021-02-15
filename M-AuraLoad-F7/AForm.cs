@@ -4,7 +4,9 @@ using SharpGL.SceneGraph.Assets;
 using SharpGL.SceneGraph.Cameras;
 using SharpGL.SceneGraph.Core;
 using SharpGL.SceneGraph.Effects;
+using SharpGL.SceneGraph.Lighting;
 using SharpGL.SceneGraph.Primitives;
+using SharpGL.SceneGraph.Quadrics;
 using SharpGL.Serialization;
 using SharpGL.Serialization.Wavefront;
 using System;
@@ -24,13 +26,17 @@ namespace M_AuraLoad_F7
         private bool isMale = Properties.Settings.Default.IsMale;
         private ArcBallEffect arcBallEffect = new ArcBallEffect();
         private string path;
-        private List<Polygon> polygons = new List<Polygon>();
+        private int auraBlue = 0;
+        private int auraRed = 0;
         private float rotate = 0;
+        private Material auraMaterial = new Material();
+        private Camera camera;
 
         public AForm()
         {
             InitializeComponent();
             LoadHuman(isMale);
+            LoadAura();
         }
 
         /// <summary>
@@ -50,19 +56,26 @@ namespace M_AuraLoad_F7
             sceneControl.Scene.SceneContainer.Children[0]
                 .RemoveChild(sceneControl.Scene.SceneContainer.Children[0].Children[0]);
 
+            auraMaterial.Diffuse = Color.FromArgb(255, auraRed, 255, auraBlue);
+
+            SceneElement lightsFolder = sceneControl.Scene.SceneContainer.Children[1];
+            Light light1 = (Light)lightsFolder.Children[0];
+            Light light2 = (Light)lightsFolder.Children[1];
+            Light light3 = (Light)lightsFolder.Children[2];
+            light1.Position = new Vertex(-9, -9, 0);
+            light2.Position = new Vertex(9, -9, 0);
+            light3.Position = new Vertex(-9, 9, 0);
             sceneControl.Scene.CurrentCamera.Position = new Vertex(0, -12.345f, 0);
-            sceneControl.Scene.SceneContainer.Effects.Add(arcBallEffect);
-            sceneControl.OpenGL.Enable(OpenGL.GL_TEXTURE_2D);
         }
 
         private void LoadHuman(bool isMale)
         {
             if (isMale) path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data", "maleMin.obj");
-            else path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data", "female.obj");
+            else path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data", "femaleMin.obj");
             ObjFileFormat obj = new ObjFileFormat();
             Scene sceneHumanObject = obj.LoadData(path);
             foreach (Asset asset in sceneHumanObject.Assets) sceneControl.Scene.Assets.Add(asset);
-            polygons = sceneHumanObject.SceneContainer.Traverse<Polygon>().ToList();
+            List<Polygon> polygons = sceneHumanObject.SceneContainer.Traverse<Polygon>().ToList();
             foreach (Polygon polygon in polygons)
             {
                 polygon.Name = "HUMAN";
@@ -79,8 +92,21 @@ namespace M_AuraLoad_F7
                 polygon.Freeze(sceneControl.OpenGL);
                 sceneControl.Scene.SceneContainer.AddChild(polygon);
                 polygon.AddEffect(new OpenGLAttributesEffect());
-                //polygon.AddEffect(arcBallEffect);
+                polygon.AddEffect(arcBallEffect);
             }
+        }
+
+        private void LoadAura()
+        {
+            Sphere sphereAura = new Sphere();
+            sphereAura.QuadricDrawStyle = DrawStyle.Line;
+            sphereAura.Transformation.ScaleX = 4f;
+            sphereAura.Transformation.ScaleY = 4f;
+            sphereAura.Transformation.ScaleZ = 6f;
+            sphereAura.AddEffect(arcBallEffect);
+            int stacks = sphereAura.Stacks;
+            sphereAura.Material = auraMaterial;
+            sceneControl.Scene.SceneContainer.AddChild(sphereAura);
         }
 
         #region mouse events
@@ -108,7 +134,11 @@ namespace M_AuraLoad_F7
         /// <param name="args">System.Drawing.Graphics</param>
         private void sceneControl_OpenGLDraw(object sender, SharpGL.RenderEventArgs args)
         {
-            rotate += 5f;
+            if (auraRed > 255) auraRed = 255;
+            if (auraRed < 0) auraRed = 0;
+            if (auraBlue > 255) auraBlue = 255;
+            if (auraBlue < 0) auraBlue = 0;
+            auraMaterial.Diffuse = Color.FromArgb(255, auraRed, 255, auraBlue);
         }
     }
 }
