@@ -34,11 +34,16 @@ namespace M_AuraLoad_F7
         static string pathAura = Path.Combine(dir, "data", "aura.obj");
         static Scene sceneAuraObject = dataAuraSphereObj.LoadData(pathAura);
 
-        public static Polygon auraPolygon { get; set; } = (Polygon)sceneAuraObject.SceneContainer.Children[0];
+        public DynAura()
+        {
+            auraPolygon = (Polygon)sceneAuraObject.SceneContainer.Children[0];
+        }
+
+        public static Polygon auraPolygon { get; set; }
 
         private static string[] scanLines = File.ReadAllLines(Path.Combine(dir, "data", "auradata.txt"));
 
-        public static Dictionary<string, int> ScanData { get; set; } = GetScanData(scanLines);
+        public static Dictionary<string, int> ScanData { get; } = GetScanData(scanLines);
 
         private static Dictionary<string, int> GetScanData(string[] scanLines)
         {
@@ -54,7 +59,8 @@ namespace M_AuraLoad_F7
 
         public void DrawDefaultAura(SceneControl sceneControl, Polygon auraPolygon)
         {
-            sceneControl.Scene.SceneContainer.Children.Add(auraPolygon);
+            var sControl = sceneControl;
+            var aPolygon = auraPolygon;
         }
 
         Object nothing = "";

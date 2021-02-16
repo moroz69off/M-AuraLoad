@@ -103,9 +103,7 @@ namespace M_AuraLoad_F7
             Dictionary<string, int> scanData = DynAura.ScanData;
             Polygon aura = DynAura.auraPolygon;
             DAura.QuadricDrawStyle = DrawStyle.Line;
-            sceneControl.Scene.SceneContainer.Children.Add(DAura);
-            //DAura.DrawDefaultAura(sceneControl, aura); // memory problem!
-
+            DAura.DrawDefaultAura(sceneControl, aura);
             
             //// From AynamicAura class
             //DynA = new DynamicAura();
