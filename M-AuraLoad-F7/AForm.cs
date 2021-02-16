@@ -98,6 +98,7 @@ namespace M_AuraLoad_F7
 
         private void LoadAura()
         {
+
             //Sphere sphereAura = new Sphere();
             //sphereAura.QuadricDrawStyle = DrawStyle.Line;
             //sphereAura.Transformation.ScaleX = 4f;
