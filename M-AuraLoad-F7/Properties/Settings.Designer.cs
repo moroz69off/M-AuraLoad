@@ -25,7 +25,7 @@ namespace M_AuraLoad_F7.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool IsMale {
             get {
                 return ((bool)(this["IsMale"]));

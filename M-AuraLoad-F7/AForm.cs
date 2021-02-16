@@ -31,11 +31,12 @@ namespace M_AuraLoad_F7
         private float rotate = 0;
         private Material auraMaterial = new Material();
         private Camera camera;
+        DynamicAura DynA;
 
         public AForm()
         {
             InitializeComponent();
-            //LoadHuman(isMale);
+            LoadHuman(isMale);
             LoadAura();
         }
 
@@ -98,6 +99,17 @@ namespace M_AuraLoad_F7
 
         private void LoadAura()
         {
+            DynAura DAura = new DynAura();
+            Dictionary<string, int> scanData = DynAura.ScanData;
+            Polygon aura = DynAura.auraPolygon;
+            DAura.QuadricDrawStyle = DrawStyle.Line;
+            DAura.DrawDefaultAura(sceneControl, aura);
+            
+            //// From AynamicAura class
+            //DynA = new DynamicAura();
+            //List<Vertex> aVerts = DynamicAura.AuraVertices;
+            //DynA.LoadDefault((SceneControl)Controls[0]);
+            //DynA.TransformAura(DynamicAura.ScanData);
 
             //Sphere sphereAura = new Sphere();
             //sphereAura.QuadricDrawStyle = DrawStyle.Line;
