@@ -66,6 +66,10 @@ namespace M_AuraLoad_F7
             sceneControl.Scene.CurrentCamera.Position = new Vertex(0, -12.345f, 0);
         }
 
+        /// <summary>
+        /// Load human model to scene
+        /// </summary>
+        /// <param name="isMale">from app settings</param>
         private void LoadHuman(bool isMale)
         {
             if (isMale) path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data", "maleMin.obj");
@@ -94,6 +98,9 @@ namespace M_AuraLoad_F7
             }
         }
 
+        /// <summary>
+        /// Load default aura to scene
+        /// </summary>
         private void LoadAura()
         {
             Sphere sphereAura = new Sphere();
