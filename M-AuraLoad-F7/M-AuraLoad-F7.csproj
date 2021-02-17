@@ -66,6 +66,8 @@
     <Compile Include="AForm.Designer.cs">
       <DependentUpon>AForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DynamicAura.cs" />
+    <Compile Include="DynAura.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
