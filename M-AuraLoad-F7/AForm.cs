@@ -28,9 +28,7 @@ namespace M_AuraLoad_F7
         private string path;
         private int auraBlue = 0;
         private int auraRed = 0;
-        private float rotate = 0;
         private Material auraMaterial = new Material();
-        private Camera camera;
 
         public AForm()
         {
