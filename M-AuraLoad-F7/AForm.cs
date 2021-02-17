@@ -104,27 +104,15 @@ namespace M_AuraLoad_F7
         /// </summary>
         private void LoadAura()
         {
-            DynAura DAura = new DynAura();
-            Dictionary<string, int> scanData = DynAura.ScanData;
-            Polygon aura = DynAura.auraPolygon;
-            DAura.QuadricDrawStyle = DrawStyle.Line;
-            DAura.DrawDefaultAura(sceneControl, aura);
-            
-            //// From AynamicAura class
-            //DynA = new DynamicAura();
-            //List<Vertex> aVerts = DynamicAura.AuraVertices;
-            //DynA.LoadDefault((SceneControl)Controls[0]);
-            //DynA.TransformAura(DynamicAura.ScanData);
-
-            //Sphere sphereAura = new Sphere();
-            //sphereAura.QuadricDrawStyle = DrawStyle.Line;
-            //sphereAura.Transformation.ScaleX = 4f;
-            //sphereAura.Transformation.ScaleY = 4f;
-            //sphereAura.Transformation.ScaleZ = 6f;
-            //sphereAura.AddEffect(arcBallEffect);
-            //int stacks = sphereAura.Stacks;
-            //sphereAura.Material = auraMaterial;
-            //sceneControl.Scene.SceneContainer.AddChild(sphereAura);
+            Sphere sphereAura = new Sphere();
+            sphereAura.QuadricDrawStyle = DrawStyle.Line;
+            sphereAura.Transformation.ScaleX = 4f;
+            sphereAura.Transformation.ScaleY = 4f;
+            sphereAura.Transformation.ScaleZ = 6f;
+            sphereAura.AddEffect(arcBallEffect);
+            int stacks = sphereAura.Stacks;
+            sphereAura.Material = auraMaterial;
+            sceneControl.Scene.SceneContainer.AddChild(sphereAura);
         }
 
         #region mouse events
