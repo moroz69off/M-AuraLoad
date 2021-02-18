@@ -66,6 +66,7 @@
     <Compile Include="AForm.Designer.cs">
       <DependentUpon>AForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
