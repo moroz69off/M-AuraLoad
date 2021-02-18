@@ -104,6 +104,7 @@ namespace M_AuraLoad_F7
         /// </summary>
         private void LoadAura()
         {
+            #region init cylinders
             Cylinder cylP_r  = new Cylinder(),
                      cylGI_r = new Cylinder(),
                      cylE_r  = new Cylinder(),
@@ -128,9 +129,11 @@ namespace M_AuraLoad_F7
                      cylTR_l = new Cylinder(),
                      cylVB_l = new Cylinder(),
                      cylF_l  = new Cylinder();
+            #endregion init cylinders
 
             List<Cylinder> cylinders = new List<Cylinder>(24);
 
+            #region add cylinders to list
             cylinders.Add(cylP_r );
             cylinders.Add(cylGI_r);
             cylinders.Add(cylE_r );
@@ -155,7 +158,9 @@ namespace M_AuraLoad_F7
             cylinders.Add(cylTR_l);
             cylinders.Add(cylVB_l);
             cylinders.Add(cylF_l );
+            #endregion add cylinders to list
 
+            #region named cylindres
             cylP_r.Name  = "cylP_r";
             cylGI_r.Name = "cylGI_r";
             cylE_r.Name  = "cylE_r";
@@ -180,34 +185,85 @@ namespace M_AuraLoad_F7
             cylTR_l.Name = "cylTR_l";
             cylVB_l.Name = "cylVB_l";
             cylF_l.Name  = "cylF_l";
+            #endregion named cylindres
+
+            cylP_r.TopRadius = 2f;
+            cylP_r.BaseRadius = 3f;
+            cylP_r.Transformation.TranslateZ = 5f;
+
+            cylGI_r.TopRadius = 3f;
+            cylGI_r.BaseRadius = 4f;
+            cylGI_r.Transformation.TranslateZ = 4f;
+
+            cylE_r.TopRadius = 4f;
+            cylE_r.BaseRadius = 5f;
+            cylE_r.Transformation.TranslateZ = 3f;
+
+            cylRP_r.TopRadius = 5f;
+            cylRP_r.BaseRadius = 6f;
+            cylRP_r.Transformation.TranslateZ = 2f;
+
+            cylC_r.TopRadius = 6f;
+            cylC_r.BaseRadius = 7f;
+            cylC_r.Transformation.TranslateZ = 1f;
+
+            cylIG_r.TopRadius = 7f;
+            cylIG_r.BaseRadius = 8f;
+            cylIG_r.Transformation.TranslateZ = 0f;
+
+            cylV_r.TopRadius = 8f;
+            cylV_r.BaseRadius = 7f;
+            cylV_r.Transformation.TranslateZ = -1f;
+
+            cylR_r.TopRadius = 7f;
+            cylR_r.BaseRadius = 6f;
+            cylR_r.Transformation.TranslateZ = -2f;
+
+            cylMC_r.TopRadius = 6f;
+            cylMC_r.BaseRadius = 5f;
+            cylMC_r.Transformation.TranslateZ = -3f;
+
+            cylTR_r.TopRadius = 5f;
+            cylTR_r.BaseRadius = 4f;
+            cylTR_r.Transformation.TranslateZ = -4f;
+
+            cylVB_r.TopRadius = 4f;
+            cylVB_r.BaseRadius = 3f;
+            cylVB_r.Transformation.TranslateZ = -5f;
+
+            cylF_r.TopRadius = 3f;
+            cylF_r.BaseRadius = 2f;
+            cylF_r.Transformation.TranslateZ = -6f;
+
+            //cylP_l
+            //cylGI_l
+            //cylE_l
+            //cylRP_l
+            //cylC_l
+            //cylIG_l
+            //cylV_l
+            //cylR_l.
+            //cylMC_l
+            //cylTR_l
+            //cylVB_l
+            //cylF_l
 
             foreach (Cylinder cylinder in cylinders)
             {
                 cylinder.Material = auraMaterial;
                 cylinder.AddEffect(arcBallEffect);
-                //cylinder.TopRadius  = 1f;
-                //cylinder.BaseRadius = 1f;
                 cylinder.Slices = 24;
                 cylinder.Stacks = 1;
-                cylinder.Height = .1;
+                cylinder.Height = 1f;
                 cylinder.QuadricDrawStyle = DrawStyle.Line;
-                cylinder.Transformation.ScaleX = 4f;
-                cylinder.Transformation.ScaleY = 4f;
-                cylinder.Transformation.ScaleZ = 4f;
+                //cylinder.Transformation.ScaleX = 4f;
+                //cylinder.Transformation.ScaleY = 4f;
+                //cylinder.Transformation.ScaleZ = 4f;
             }
 
             for (int i = 0; i < 24; i++)
             {
                 sceneControl.Scene.SceneContainer.AddChild(cylinders[i]);
-            }
-
-            for (int i = 12; i >= 1; i--)
-            {
-                int r = Math.Abs(i - 11);
-                cylinders[i].TopRadius = r / 10f;
-                cylinders[i + 11].TopRadius = r / 10f;
-                cylinders[i].Transformation.TranslateZ = i/2.5f;
-                cylinders[i + 11].Transformation.TranslateZ = -i/2.5f;
             }
         }
 
@@ -244,12 +300,3 @@ namespace M_AuraLoad_F7
         }
     }
 }
-//Sphere sphereAura = new Sphere();
-//sphereAura.QuadricDrawStyle = DrawStyle.Line;
-//sphereAura.Transformation.ScaleX = 4f;
-//sphereAura.Transformation.ScaleY = 4f;
-//sphereAura.Transformation.ScaleZ = 6f;
-//sphereAura.AddEffect(arcBallEffect);
-//int stacks = sphereAura.Stacks;
-//sphereAura.Material = auraMaterial;
-//sceneControl.Scene.SceneContainer.AddChild(sphereAura);
