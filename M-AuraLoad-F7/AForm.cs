@@ -23,6 +23,7 @@ namespace M_AuraLoad_F7
 {
     public partial class AForm : Form
     {
+
         private bool isMale = Properties.Settings.Default.IsMale;
         private ArcBallEffect arcBallEffect = new ArcBallEffect();
         private string path;
@@ -187,6 +188,7 @@ namespace M_AuraLoad_F7
             cylF_l.Name  = "cylF_l";
             #endregion named cylindres
 
+            // x^2+y^2=r^2
             cylP_r.TopRadius = 2f;
             cylP_r.BaseRadius = 3f;
             cylP_r.Transformation.TranslateZ = 5f;
@@ -208,10 +210,10 @@ namespace M_AuraLoad_F7
             cylC_r.Transformation.TranslateZ = 1f;
 
             cylIG_r.TopRadius = 7f;
-            cylIG_r.BaseRadius = 8f;
+            cylIG_r.BaseRadius = 7f;
             cylIG_r.Transformation.TranslateZ = 0f;
 
-            cylV_r.TopRadius = 8f;
+            cylV_r.TopRadius = 7f;
             cylV_r.BaseRadius = 7f;
             cylV_r.Transformation.TranslateZ = -1f;
 
@@ -256,9 +258,6 @@ namespace M_AuraLoad_F7
                 cylinder.Stacks = 1;
                 cylinder.Height = 1f;
                 cylinder.QuadricDrawStyle = DrawStyle.Line;
-                //cylinder.Transformation.ScaleX = 4f;
-                //cylinder.Transformation.ScaleY = 4f;
-                //cylinder.Transformation.ScaleZ = 4f;
             }
 
             for (int i = 0; i < 24; i++)
