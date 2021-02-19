@@ -1,4 +1,5 @@
 using SharpGL;
+using SharpGL.OpenGLAttributes;
 using SharpGL.SceneGraph;
 using SharpGL.SceneGraph.Assets;
 using SharpGL.SceneGraph.Cameras;
@@ -30,7 +31,7 @@ namespace M_AuraLoad_F7
         private int auraBlue = 0;
         private int auraRed = 0;
         private Material auraMaterial = new Material();
-
+        ScissorAttributes scissorAttributes = new ScissorAttributes();
 
         public AForm()
         {
@@ -188,53 +189,53 @@ namespace M_AuraLoad_F7
             cylF_l.Name  = "cylF_l";
             #endregion named cylindres
 
-            // x^2+y^2=r^2
-            cylP_r.TopRadius = 2f;
-            cylP_r.BaseRadius = 3f;
+            #region build sphere
+            cylP_r.TopRadius = 1.9f;
+            cylP_r.BaseRadius = 2.7f;
             cylP_r.Transformation.TranslateZ = 5f;
 
-            cylGI_r.TopRadius = 3f;
-            cylGI_r.BaseRadius = 4f;
+            cylGI_r.TopRadius = 2.7f;
+            cylGI_r.BaseRadius = 3.4f;
             cylGI_r.Transformation.TranslateZ = 4f;
 
-            cylE_r.TopRadius = 4f;
-            cylE_r.BaseRadius = 5f;
+            cylE_r.TopRadius = 3.4f;
+            cylE_r.BaseRadius = 4f;
             cylE_r.Transformation.TranslateZ = 3f;
 
-            cylRP_r.TopRadius = 5f;
-            cylRP_r.BaseRadius = 6f;
+            cylRP_r.TopRadius = 4f;
+            cylRP_r.BaseRadius = 4.5f;
             cylRP_r.Transformation.TranslateZ = 2f;
 
-            cylC_r.TopRadius = 6f;
-            cylC_r.BaseRadius = 7f;
+            cylC_r.TopRadius = 4.5f;
+            cylC_r.BaseRadius = 4.9f;
             cylC_r.Transformation.TranslateZ = 1f;
 
-            cylIG_r.TopRadius = 7f;
-            cylIG_r.BaseRadius = 7f;
+            cylIG_r.TopRadius = 4.9f;
+            cylIG_r.BaseRadius = 5f;
             cylIG_r.Transformation.TranslateZ = 0f;
 
-            cylV_r.TopRadius = 7f;
-            cylV_r.BaseRadius = 7f;
+            cylV_r.TopRadius = 5f;
+            cylV_r.BaseRadius = 4.9f;
             cylV_r.Transformation.TranslateZ = -1f;
 
-            cylR_r.TopRadius = 7f;
-            cylR_r.BaseRadius = 6f;
+            cylR_r.TopRadius = 4.9f;
+            cylR_r.BaseRadius = 4.5f;
             cylR_r.Transformation.TranslateZ = -2f;
 
-            cylMC_r.TopRadius = 6f;
-            cylMC_r.BaseRadius = 5f;
+            cylMC_r.TopRadius = 4.5f;
+            cylMC_r.BaseRadius = 4f;
             cylMC_r.Transformation.TranslateZ = -3f;
 
-            cylTR_r.TopRadius = 5f;
-            cylTR_r.BaseRadius = 4f;
+            cylTR_r.TopRadius = 4f;
+            cylTR_r.BaseRadius = 3.4f;
             cylTR_r.Transformation.TranslateZ = -4f;
 
-            cylVB_r.TopRadius = 4f;
-            cylVB_r.BaseRadius = 3f;
+            cylVB_r.TopRadius = 3.4f;
+            cylVB_r.BaseRadius = 2.7f;
             cylVB_r.Transformation.TranslateZ = -5f;
 
-            cylF_r.TopRadius = 3f;
-            cylF_r.BaseRadius = 2f;
+            cylF_r.TopRadius = 2.7f;
+            cylF_r.BaseRadius = 1.9f;
             cylF_r.Transformation.TranslateZ = -6f;
 
             //cylP_l
@@ -249,6 +250,7 @@ namespace M_AuraLoad_F7
             //cylTR_l
             //cylVB_l
             //cylF_l
+            #endregion build sphere
 
             foreach (Cylinder cylinder in cylinders)
             {
