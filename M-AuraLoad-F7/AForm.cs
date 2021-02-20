@@ -1,4 +1,5 @@
 using SharpGL;
+using SharpGL.Enumerations;
 using SharpGL.OpenGLAttributes;
 using SharpGL.SceneGraph;
 using SharpGL.SceneGraph.Assets;
@@ -46,7 +47,7 @@ namespace M_AuraLoad_F7
         /// <param name="e">System.EventArgs</param>
         private void sceneControl_Load(object sender, EventArgs e)
         {
-
+            //sceneControl.OpenGL.PolygonMode(FaceMode.FrontAndBack, PolygonMode.Lines);
             // Remove red bounding box of models
             sceneControl.Scene.RenderBoundingVolumes =
                 !sceneControl.Scene.RenderBoundingVolumes;
