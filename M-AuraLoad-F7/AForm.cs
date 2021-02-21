@@ -111,37 +111,9 @@ namespace M_AuraLoad_F7
             ObjFileFormat obj = new ObjFileFormat();
             Scene sceneAuraObject = obj.LoadData(apath);
             List<Polygon> polygons = sceneAuraObject.SceneContainer.Traverse<Polygon>().ToList();
-            foreach (Polygon polygon in polygons)
-            {
-                polygon.Name = "AURA";
-                polygon.Material = auraMaterial;
-                BoundingVolume boundingVolume = polygon.BoundingVolume;
-                var extent = new float[3];
-                boundingVolume.GetBoundDimensions(out extent[0], out extent[1], out extent[2]);
-                float maxExtent = extent.Max();
-                float scaleFactor = maxExtent > 10 ? 10.0f / maxExtent : 1;
-                polygon.Parent.RemoveChild(polygon);
-                polygon.Transformation.RotateX = 90; // 
-                polygon.Transformation.ScaleX = scaleFactor * 6;
-                polygon.Transformation.ScaleY = scaleFactor * 6;
-                polygon.Transformation.ScaleZ = scaleFactor * 6;
-                polygon.Freeze(sceneControl.OpenGL);
-                //sceneControl.Scene.SceneContainer.AddChild(polygon);
-                polygon.AddEffect(new OpenGLAttributesEffect());
-                polygon.AddEffect(arcBallEffect);
-                polygon.Render(sceneControl.OpenGL, RenderMode.HitTest);
-            }
-
-            Polygon aPolygon = polygons[0];
-            SceneElement aElement = aPolygon;
-            var aVertices = aPolygon.Vertices;
-            //aPolygon.AddFaceFromVertexData(aVertices.ToArray());
-            aPolygon.Material = auraMaterial;
-            aPolygon.Faces = null;
-            aPolygon.UVs = null;
-            //Quadric aQuadric = (Quadric)aElement;
-            //aQuadric.QuadricDrawStyle = DrawStyle.Line;
-            sceneControl.Scene.SceneContainer.Children.Add(aElement);
+            var aPolygon = polygons[0];
+            AuraQuad AQuadr = new AuraQuad();
+            AQuadr.CreateAura(GL, aPolygon);
         }
 
         #region mouse events
