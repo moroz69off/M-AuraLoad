@@ -26,19 +26,28 @@ namespace M_AuraLoad_F7
 {
     class AuraQuad : Quadric
     {
-        Vertex vertex { get; set; }
+        public float rquad { get; set; } = 0;
 
-        VertexControl VertexControl { get; set; }
-        public void CreateAura(OpenGL GL, Polygon polygon)
-        {
-			GL.Begin(OpenGL.GL_QUADS);
-            IntPtr quadr = GL.NewQuadric();
+		public void CreateAura(OpenGL GL, Polygon polygon)
+		{
+			#region draw quads
+			GL.LoadIdentity();
 
-			
+			GL.Rotate(rquad, .0f, .0f, 1.0f);
+			GL.Begin(OpenGL.GL_QUADS); // first 4 vertices
+			GL.Color(Color.FromArgb(100, 0, 255, 255));
+            for (int i = 0; i < 4; i++)
+            {
+				GL.Vertex(polygon.Vertices[i].X * 5, polygon.Vertices[i].Y * 5, polygon.Vertices[i].Z * 5);
+            }
+            GL.End();
 
-		}
+            GL.Flush();
+            #endregion draw quads
 
-		protected void calcNormal(float[,] v, float[] result)
+        }
+
+        protected void calcNormal(float[,] v, float[] result)
 		{
 			float[] v1 = new float[3];
 			float[] v2 = new float[3];  // Vector 1 (x,y,z) & Vector 2 (x,y,z)
