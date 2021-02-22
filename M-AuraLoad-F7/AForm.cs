@@ -35,6 +35,8 @@ namespace M_AuraLoad_F7
         private Polygon aPolygon;
         AuraQuad AQuadr = new AuraQuad();
         private Material humanMaterial = new Material();
+        OpenGLControl openGLControl = new OpenGLControl();
+        private bool isRotate = true;
 
         public AForm()
         {
@@ -50,7 +52,22 @@ namespace M_AuraLoad_F7
         /// <param name="e">System.EventArgs</param>
         private void sceneControl_Load(object sender, EventArgs e)
         {
+            //=================================
+            // Test add control
+            openGLControl.BackColor = Color.FromArgb(0, 0, 0, 0);
+            openGLControl.Dock = DockStyle.Fill;
+            Label controlLabel = new Label();
+            controlLabel.Click += new EventHandler(this.ConrolLabelClick);
+            controlLabel.DoubleClick += new EventHandler(this.ConrolLabelDoubleClick);
+            controlLabel.Name = "Label";
+            controlLabel.Text = "Rotate";
+            controlLabel.BackColor = Color.White;
+            controlLabel.Width = 50;
+            controlLabel.Height = 33;
+            openGLControl.Controls.Add(controlLabel);
 
+            sceneControl.Controls.Add(openGLControl);
+            //=================================
             //sceneControl.OpenGL.PolygonMode(FaceMode.FrontAndBack, PolygonMode.Lines);
             sceneControl.OpenGL.Enable(OpenGL.GL_COLOR_MATERIAL);
             sceneControl.OpenGL.Enable(OpenGL.GL_COLOR_MATERIAL_PARAMETER);
@@ -83,6 +100,17 @@ namespace M_AuraLoad_F7
             light3.Position = new Vertex(-9, 9, 0);
 
             sceneControl.Scene.CurrentCamera.Position = new Vertex(0, -12.345f, 0);
+        }
+
+        private void ConrolLabelDoubleClick(object sender, EventArgs e)
+        {
+            isRotate = true;
+        }
+
+        private void ConrolLabelClick(object sender, EventArgs e)
+        {
+            isRotate = false;
+            //AQuadr.rquad = 0;
         }
 
         /// <summary>
@@ -147,7 +175,7 @@ namespace M_AuraLoad_F7
                 polygon.AddEffect(new OpenGLAttributesEffect());
                 polygon.AddEffect(arcBallEffect);
                 
-                sceneControl.Scene.SceneContainer.AddChild(polygon);
+                //sceneControl.Scene.SceneContainer.AddChild(polygon);
             }
         }
 
@@ -185,7 +213,10 @@ namespace M_AuraLoad_F7
             if (auraBlue < 0) auraBlue = 0;
             auraMaterial.Diffuse = Color.FromArgb(255, auraRed, 255, auraBlue);
             AQuadr.CreateAura(sceneControl.OpenGL, aPolygon);
-            AQuadr.rquad += .888888888888888888888888888888f;
+            if (isRotate)
+            {
+                AQuadr.rquad += .888f;
+            }
         }
     }
 }
