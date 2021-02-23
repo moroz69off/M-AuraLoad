@@ -54,26 +54,31 @@ namespace M_AuraLoad_F7
         {
             //=================================
             // Test add control
+
             openGLControl.BackColor = Color.FromArgb(0, 0, 0, 0);
             openGLControl.Dock = DockStyle.Fill;
             Label controlLabel = new Label();
-            controlLabel.Click += new EventHandler(this.ConrolLabelClick);
-            controlLabel.DoubleClick += new EventHandler(this.ConrolLabelDoubleClick);
+            controlLabel.Click += new EventHandler(ConrolLabelClick);
+            controlLabel.DoubleClick += new EventHandler(ConrolLabelDoubleClick);
             controlLabel.Name = "Label";
             controlLabel.Text = "Rotate";
             controlLabel.BackColor = Color.White;
             controlLabel.Width = 50;
-            controlLabel.Height = 33;
+            controlLabel.Height = 20;
             openGLControl.Controls.Add(controlLabel);
 
             sceneControl.Controls.Add(openGLControl);
+
+            // End Test add control
             //=================================
+
+
             //sceneControl.OpenGL.PolygonMode(FaceMode.FrontAndBack, PolygonMode.Lines);
             sceneControl.OpenGL.Enable(OpenGL.GL_COLOR_MATERIAL);
             sceneControl.OpenGL.Enable(OpenGL.GL_COLOR_MATERIAL_PARAMETER);
             //sceneControl.OpenGL.Enable(OpenGL.GL_COLOR_TABLE_ALPHA_SIZE_EXT);
-            sceneControl.OpenGL.Enable(OpenGL.GL_ALPHA);
-            sceneControl.OpenGL.BlendFunc(OpenGL.GL_SRC_ALPHA, OpenGL.GL_ONE);
+            //sceneControl.OpenGL.Enable(OpenGL.GL_ALPHA);
+            //sceneControl.OpenGL.BlendFunc(OpenGL.GL_SRC_ALPHA, OpenGL.GL_ONE);
 
             // Remove red bounding box of models
             sceneControl.Scene.RenderBoundingVolumes =
@@ -100,17 +105,6 @@ namespace M_AuraLoad_F7
             light3.Position = new Vertex(-9, 9, 0);
 
             sceneControl.Scene.CurrentCamera.Position = new Vertex(0, -12.345f, 0);
-        }
-
-        private void ConrolLabelDoubleClick(object sender, EventArgs e)
-        {
-            isRotate = true;
-        }
-
-        private void ConrolLabelClick(object sender, EventArgs e)
-        {
-            isRotate = false;
-            //AQuadr.rquad = 0;
         }
 
         /// <summary>
@@ -180,6 +174,18 @@ namespace M_AuraLoad_F7
         }
 
         #region mouse events
+
+        private void ConrolLabelDoubleClick(object sender, EventArgs e)
+        {
+            isRotate = true;
+        }
+
+        private void ConrolLabelClick(object sender, EventArgs e)
+        {
+            isRotate = false;
+            AQuadr.rquad = 0;
+        }
+
         private void sceneControl_MouseDown(object sender, MouseEventArgs e)
         {
             arcBallEffect.ArcBall.SetBounds(sceneControl.Width, sceneControl.Height);
@@ -204,9 +210,6 @@ namespace M_AuraLoad_F7
         /// <param name="args">System.Drawing.Graphics</param>
         private void sceneControl_OpenGLDraw(object sender, SharpGL.RenderEventArgs args)
         {
-            OpenGL GL = sceneControl.OpenGL;
-            //GL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
-            
             if (auraRed > 255) auraRed = 255;
             if (auraRed < 0) auraRed = 0;
             if (auraBlue > 255) auraBlue = 255;
@@ -215,7 +218,7 @@ namespace M_AuraLoad_F7
             AQuadr.CreateAura(sceneControl.OpenGL, aPolygon);
             if (isRotate)
             {
-                AQuadr.rquad += .888f;
+                AQuadr.rquad += 4f;
             }
         }
     }
