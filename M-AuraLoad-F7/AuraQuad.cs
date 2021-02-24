@@ -26,12 +26,32 @@ namespace M_AuraLoad_F7
 {
     class AuraQuad : Quadric
     {
+        static OpenGL gl;
         public float rquad { get; set; } = 0;
 
-        public Quadric quadric { get; set; }
+        private uint BlurTexture;
 
-		public void CreateAura(OpenGL GL, Polygon polygon)
+
+        private static uint EmptyTexture(OpenGL gl)
+        {
+            uint[] txtnumber = new uint[1]; // Texture ID
+            // Create Storage Space For Texture Data (128x128x4)
+            byte[] data = new byte[((128 * 128) * 4 * sizeof(uint))];
+
+            gl.GenTextures(1, txtnumber);					// Create 1 Texture
+            gl.BindTexture(OpenGL.GL_TEXTURE_2D, txtnumber[0]);			// Bind The Texture
+            gl.TexImage2D(OpenGL.GL_TEXTURE_2D, 0, 4, 128, 128, 0,
+                OpenGL.GL_RGBA, OpenGL.GL_UNSIGNED_BYTE, data);			// Build Texture Using Information In data
+            gl.TexParameter(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_MIN_FILTER, OpenGL.GL_LINEAR);
+            gl.TexParameter(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_MAG_FILTER, OpenGL.GL_LINEAR);
+
+            return txtnumber[0];						// Return The Texture ID
+        }
+
+        public void CreateAura(OpenGL GL, Polygon polygon)
 		{
+            gl = GL;
+            BlurTexture = EmptyTexture(gl);
             GL.LoadIdentity();
             GL.Rotate(rquad, .0f, .0f, 1.0f);
 

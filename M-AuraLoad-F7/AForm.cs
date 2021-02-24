@@ -35,12 +35,13 @@ namespace M_AuraLoad_F7
         private Polygon aPolygon;
         AuraQuad AQuadr = new AuraQuad();
         private Material humanMaterial = new Material();
-        OpenGLControl openGLControl = new OpenGLControl();
+        public OpenGLControl openGLControl;
         private bool isRotate = true;
 
         public AForm()
         {
             InitializeComponent();
+            openGLControl = new OpenGLControl();
             LoadHuman(isMale);
             LoadAura();
         }
@@ -215,7 +216,7 @@ namespace M_AuraLoad_F7
             if (auraBlue > 255) auraBlue = 255;
             if (auraBlue < 0) auraBlue = 0;
             auraMaterial.Diffuse = Color.FromArgb(255, auraRed, 255, auraBlue);
-            AQuadr.CreateAura(sceneControl.OpenGL, aPolygon);
+            AQuadr.CreateAura(openGLControl.OpenGL, aPolygon);
             if (isRotate) AQuadr.rquad += 4f;
         }
     }
