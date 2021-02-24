@@ -343,7 +343,5 @@ namespace RadialBlurSample
             gl.ClearColor(0.0f, 0.0f, 0.0f, 0.5f);						// Set The Clear Color To Black
        
         }
-
-
     }
 }
