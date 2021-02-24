@@ -60,8 +60,6 @@ namespace M_AuraLoad_F7
             // Remove default Grid
             container.Children[0].RemoveChild(container.Children[0].Children[0]);
 
-            humanMaterial.Diffuse = Color.FromArgb(255, 100, 100, 100);
-
             SceneElement lightsFolder = sceneControl.Scene.SceneContainer.Children[1];
             Light light1 = (Light)lightsFolder.Children[0];
             Light light2 = (Light)lightsFolder.Children[1];
@@ -82,9 +80,9 @@ namespace M_AuraLoad_F7
             if (isMale) path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data", "maleMin.obj");
             else path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data", "femaleMin.obj");
             ObjFileFormat obj = new ObjFileFormat();
-            Scene sceneHumanObject = obj.LoadData(path);
-            //foreach (Asset asset in sceneHumanObject.Assets) sceneControl.Scene.Assets.Add(asset);
-            List<Polygon> polygons = sceneHumanObject.SceneContainer.Traverse<Polygon>().ToList();
+            Scene sceneData = obj.LoadData(path);
+            foreach (Asset asset in sceneData.Assets) sceneControl.Scene.Assets.Add(asset);
+            List<Polygon> polygons = sceneData.SceneContainer.Traverse<Polygon>().ToList();
             foreach (Polygon polygon in polygons)
             {
                 polygon.Name = "HUMAN";
@@ -103,7 +101,7 @@ namespace M_AuraLoad_F7
                 polygon.Freeze(sceneControl.OpenGL);
                 polygon.AddEffect(new OpenGLAttributesEffect());
                 polygon.AddEffect(arcBallEffect);
-                sceneControl.Scene.SceneContainer.AddChild(polygon);
+                sceneControl.Scene.SceneContainer.AddChild(polygon); // add ? true
             }
         }
 
@@ -112,7 +110,30 @@ namespace M_AuraLoad_F7
         /// </summary>
         private void LoadAura()
         {
-
+            path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data", "auraCuttb.obj");
+            ObjFileFormat obj = new ObjFileFormat();
+            Scene sceneData = obj.LoadData(path);
+            List<Polygon> polygons = sceneData.SceneContainer.Traverse<Polygon>().ToList();
+            foreach (var polygon in polygons)
+            {
+                polygon.Name = "AURA";
+                BoundingVolume boundingVolume = polygon.BoundingVolume;
+                var extent = new float[3];
+                boundingVolume.GetBoundDimensions(out extent[0], out extent[1], out extent[2]);
+                float maxExtent = extent.Max();
+                float scaleFactor = maxExtent > 10 ? 10.0f / maxExtent : 1;
+                polygon.Parent.RemoveChild(polygon);
+                polygon.Transformation.RotateX = 90;
+                polygon.Transformation.ScaleX = scaleFactor * 6;
+                polygon.Transformation.ScaleY = scaleFactor * 6;
+                polygon.Transformation.ScaleZ = scaleFactor * 6;
+                polygon.Material = humanMaterial;
+                polygon.Material.Push(gl: sceneControl.OpenGL);
+                polygon.Freeze(sceneControl.OpenGL);
+                polygon.AddEffect(new OpenGLAttributesEffect());
+                polygon.AddEffect(arcBallEffect);
+                aPolygon = polygon;
+            }
         }
 
         #region mouse events
@@ -152,8 +173,8 @@ namespace M_AuraLoad_F7
         /// <param name="args">System.Drawing.Graphics</param>
         private void sceneControl_OpenGLDraw(object sender, SharpGL.RenderEventArgs args)
         {
-            //OpenGL GL = sceneControl.OpenGL;
-            //GL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
+            OpenGL GL = sceneControl.OpenGL;
+            GL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
             
             if (auraRed > 255) auraRed = 255;
             if (auraRed < 0) auraRed = 0;
