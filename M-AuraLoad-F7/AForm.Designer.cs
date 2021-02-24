@@ -40,7 +40,7 @@ namespace M_AuraLoad_F7
             this.sceneControl.DrawFPS = false;
             this.sceneControl.Location = new System.Drawing.Point(0, 0);
             this.sceneControl.Name = "sceneControl";
-            this.sceneControl.OpenGLVersion = SharpGL.Version.OpenGLVersion.OpenGL2_1;
+            this.sceneControl.OpenGLVersion = SharpGL.Version.OpenGLVersion.OpenGL3_3;
             this.sceneControl.RenderContextType = SharpGL.RenderContextType.DIBSection;
             this.sceneControl.RenderTrigger = SharpGL.RenderTrigger.TimerBased;
             this.sceneControl.Size = new System.Drawing.Size(914, 614);
