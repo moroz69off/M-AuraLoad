@@ -28,21 +28,24 @@ namespace M_AuraLoad_F7
     {
         public float rquad { get; set; } = 0;
 
+        public Quadric quadric { get; set; }
+
 		public void CreateAura(OpenGL GL, Polygon polygon)
 		{
-			#region draw quads
-			GL.LoadIdentity();
+            GL.LoadIdentity();
+            GL.Rotate(rquad, .0f, .0f, 1.0f);
 
-			GL.Rotate(rquad, .0f, .0f, 1.0f);
-			GL.Begin(OpenGL.GL_QUADS); // first 4 vertices
-			//GL.Color(Color.FromArgb(100, 0, 255, 255));
-            for (int i = 0; i < 4; i++)
+            #region draw aura quads
+
+            for (int i = 0; i < polygon.Faces.Count; i++)
             {
-				GL.Vertex(polygon.Vertices[i].X * 5, polygon.Vertices[i].Y * 5, polygon.Vertices[i].Z * 5);
+                int numVertex = 0;
+                
             }
-            GL.End();
+
             GL.Flush();
-            #endregion draw quads
+
+            #endregion draw aura quads
         }
 	}
 }
