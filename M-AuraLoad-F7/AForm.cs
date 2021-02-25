@@ -153,7 +153,7 @@ namespace M_AuraLoad_F7
 
         private void BuildAuraControl(Polygon aPolygon)
         {
-            
+
         }
 
         #region mouse events
@@ -222,19 +222,61 @@ namespace M_AuraLoad_F7
         /// <param name="args">System.Drawing.Graphics</param>
         private void openGLcontrol_OpenGLDraw(object sender, RenderEventArgs args)
         {
+            float rquad = 0;
+
             OpenGL GL = openGLControl.OpenGL;
             GL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
             List<Vertex> vertices = aPolygon.Vertices;
-            GL.LoadIdentity();  // Reset The View
+            BuildAuraControl(aPolygon);
+
+            GL.LoadIdentity();
             
-            GL.Begin(OpenGL.GL_LINE);
-            
-            GL.Color(1.0f, 0.0f, 0.0f);
-            GL.Vertex(vertices[0]);
-            GL.Color(0.0f, 1.0f, 1.0f);
-            GL.Vertex(vertices[1]);
-            
-            GL.End();
+            GL.Rotate(rquad, 0, 0, 1);			// Rotate The Cube On X, Y & Z
+
+            GL.Begin(OpenGL.GL_QUADS);					// Start Drawing The Cube
+
+            GL.Color(0.0f, 1.0f, 0.0f);			// Set The Color To Green
+            GL.Vertex(1.0f, 1.0f, -1.0f);			// Top Right Of The Quad (Top)
+            GL.Vertex(-1.0f, 1.0f, -1.0f);			// Top Left Of The Quad (Top)
+            GL.Vertex(-1.0f, 1.0f, 1.0f);			// Bottom Left Of The Quad (Top)
+            GL.Vertex(1.0f, 1.0f, 1.0f);			// Bottom Right Of The Quad (Top)
+
+
+            GL.Color(1.0f, 0.5f, 0.0f);			// Set The Color To Orange
+            GL.Vertex(1.0f, -1.0f, 1.0f);			// Top Right Of The Quad (Bottom)
+            GL.Vertex(-1.0f, -1.0f, 1.0f);			// Top Left Of The Quad (Bottom)
+            GL.Vertex(-1.0f, -1.0f, -1.0f);			// Bottom Left Of The Quad (Bottom)
+            GL.Vertex(1.0f, -1.0f, -1.0f);			// Bottom Right Of The Quad (Bottom)
+
+            GL.Color(1.0f, 0.0f, 0.0f);			// Set The Color To Red
+            GL.Vertex(1.0f, 1.0f, 1.0f);			// Top Right Of The Quad (Front)
+            GL.Vertex(-1.0f, 1.0f, 1.0f);			// Top Left Of The Quad (Front)
+            GL.Vertex(-1.0f, -1.0f, 1.0f);			// Bottom Left Of The Quad (Front)
+            GL.Vertex(1.0f, -1.0f, 1.0f);			// Bottom Right Of The Quad (Front)
+
+            GL.Color(1.0f, 1.0f, 0.0f);			// Set The Color To Yellow
+            GL.Vertex(1.0f, -1.0f, -1.0f);			// Bottom Left Of The Quad (Back)
+            GL.Vertex(-1.0f, -1.0f, -1.0f);			// Bottom Right Of The Quad (Back)
+            GL.Vertex(-1.0f, 1.0f, -1.0f);			// Top Right Of The Quad (Back)
+            GL.Vertex(1.0f, 1.0f, -1.0f);			// Top Left Of The Quad (Back)
+
+            GL.Color(0.0f, 0.0f, 1.0f);			// Set The Color To Blue
+            GL.Vertex(-1.0f, 1.0f, 1.0f);			// Top Right Of The Quad (Left)
+            GL.Vertex(-1.0f, 1.0f, -1.0f);			// Top Left Of The Quad (Left)
+            GL.Vertex(-1.0f, -1.0f, -1.0f);			// Bottom Left Of The Quad (Left)
+            GL.Vertex(-1.0f, -1.0f, 1.0f);			// Bottom Right Of The Quad (Left)
+
+            GL.Color(1.0f, 0.0f, 1.0f);			// Set The Color To Violet
+            GL.Vertex(1.0f, 1.0f, -1.0f);			// Top Right Of The Quad (Right)
+            GL.Vertex(1.0f, 1.0f, 1.0f);			// Top Left Of The Quad (Right)
+            GL.Vertex(1.0f, -1.0f, 1.0f);			// Bottom Left Of The Quad (Right)
+            GL.Vertex(1.0f, -1.0f, -1.0f);			// Bottom Right Of The Quad (Right)
+            GL.End();						// Done Drawing The Q
+
+            GL.Flush();
+
+            rquad -= 1.0f;// 0.15f;						// Decrease The Rotation Variable For The Quad 
+
         }
     }
 }
