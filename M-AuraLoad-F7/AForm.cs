@@ -83,9 +83,7 @@ namespace M_AuraLoad_F7
 
         private void openGLcontrol_Load(object sender, EventArgs e)
         {
-            OpenGL gL = openGLControl.OpenGL;
-            gL.ClearColor(0, 1, 1, .5f);
-            gL.Enable(OpenGL.GL_DYNAMIC_DRAW);
+
         }
 
         /// <summary>
@@ -153,8 +151,6 @@ namespace M_AuraLoad_F7
             }
         }
 
-
-
         #region mouse events
 
         //private void ConrolLabelDoubleClick(object sender, EventArgs e)
@@ -214,19 +210,7 @@ namespace M_AuraLoad_F7
         /// <param name="args">System.Drawing.Graphics</param>
         private void openGLcontrol_OpenGLDraw(object sender, RenderEventArgs args)
         {
-            OpenGL GL = openGLControl.OpenGL;
-            GL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
-            List<Vertex> vertices = aPolygon.Vertices;
-            GL.LoadIdentity();  // Reset The View
-            
-            GL.Begin(OpenGL.GL_LINE);
-            
-            GL.Color(1.0f, 0.0f, 0.0f);
-            GL.Vertex(vertices[0]);
-            GL.Color(0.0f, 1.0f, 1.0f);
-            GL.Vertex(vertices[1]);
-            
-            GL.End();
+
         }
     }
 }
