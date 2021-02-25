@@ -40,7 +40,7 @@ namespace M_AuraLoad_F7
         public AForm()
         {
             InitializeComponent();
-            //LoadHuman(isMale);
+            LoadHuman(isMale);
             LoadAura();
         }
 
@@ -83,7 +83,9 @@ namespace M_AuraLoad_F7
 
         private void openGLcontrol_Load(object sender, EventArgs e)
         {
-            
+            OpenGL gL = openGLControl.OpenGL;
+            gL.ClearColor(0, 1, 1, .5f);
+            gL.Enable(OpenGL.GL_DYNAMIC_DRAW);
         }
 
         /// <summary>
@@ -151,10 +153,7 @@ namespace M_AuraLoad_F7
             }
         }
 
-        private void BuildAuraControl(Polygon aPolygon)
-        {
-            
-        }
+
 
         #region mouse events
 
@@ -203,16 +202,9 @@ namespace M_AuraLoad_F7
         /// </summary>
         /// <param name="sender">Scene control</param>
         /// <param name="args">System.Drawing.Graphics</param>
-        private void sceneControl_OpenGLDraw(object sender, SharpGL.RenderEventArgs args)
+        private void sceneControl_OpenGLDraw(object sender, RenderEventArgs args)
         {
-            OpenGL GL = sceneControl.OpenGL;
-            GL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
-            
-            if (auraRed > 255) auraRed = 255;
-            if (auraRed < 0) auraRed = 0;
-            if (auraBlue > 255) auraBlue = 255;
-            if (auraBlue < 0) auraBlue = 0;
-            auraMaterial.Diffuse = Color.FromArgb(255, auraRed, 255, auraBlue);
+
         }
 
         /// <summary>
@@ -222,19 +214,7 @@ namespace M_AuraLoad_F7
         /// <param name="args">System.Drawing.Graphics</param>
         private void openGLcontrol_OpenGLDraw(object sender, RenderEventArgs args)
         {
-            OpenGL GL = openGLControl.OpenGL;
-            GL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
-            List<Vertex> vertices = aPolygon.Vertices;
-            GL.LoadIdentity();  // Reset The View
-            
-            GL.Begin(OpenGL.GL_LINE);
-            
-            GL.Color(1.0f, 0.0f, 0.0f);
-            GL.Vertex(vertices[0]);
-            GL.Color(0.0f, 1.0f, 1.0f);
-            GL.Vertex(vertices[1]);
-            
-            GL.End();
+
         }
     }
 }
