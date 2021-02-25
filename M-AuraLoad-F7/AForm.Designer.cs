@@ -70,4 +70,3 @@ namespace M_AuraLoad_F7
         private SharpGL.SceneControl sceneControl;
     }
 }
-
