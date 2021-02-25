@@ -214,7 +214,19 @@ namespace M_AuraLoad_F7
         /// <param name="args">System.Drawing.Graphics</param>
         private void openGLcontrol_OpenGLDraw(object sender, RenderEventArgs args)
         {
-
+            OpenGL GL = openGLControl.OpenGL;
+            GL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
+            List<Vertex> vertices = aPolygon.Vertices;
+            GL.LoadIdentity();  // Reset The View
+            
+            GL.Begin(OpenGL.GL_LINE);
+            
+            GL.Color(1.0f, 0.0f, 0.0f);
+            GL.Vertex(vertices[0]);
+            GL.Color(0.0f, 1.0f, 1.0f);
+            GL.Vertex(vertices[1]);
+            
+            GL.End();
         }
     }
 }
