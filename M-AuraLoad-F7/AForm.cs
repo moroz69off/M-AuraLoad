@@ -210,7 +210,7 @@ namespace M_AuraLoad_F7
         /// <param name="args">System.Drawing.Graphics</param>
         private void openGLcontrol_OpenGLDraw(object sender, RenderEventArgs args)
         {
-            // сделаю на жџсџ, заебал этот Ўарп∆ыэль!!!
+            
         }
     }
 }
