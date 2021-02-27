@@ -21,6 +21,7 @@ namespace AuraThree
 
         private void AForm_Load(object sender, EventArgs e)
         {
+            webBrowser.DocumentText = "Document text";
             webBrowser.AllowNavigation = true;
             webBrowser.Navigate("http://moroz69off.coolpage.biz/");
         }
