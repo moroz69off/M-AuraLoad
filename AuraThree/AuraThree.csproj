@@ -51,7 +51,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AsyncHttpServer.cs" />
     <Compile Include="AuForm.cs">
       <SubType>Form</SubType>
     </Compile>

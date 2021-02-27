@@ -21,12 +21,8 @@ namespace AuraThree
 
         private void AForm_Load(object sender, EventArgs e)
         {
-            AsyncHttpServer server = new AsyncHttpServer();
-            server.Start("http://localhost:8088/");
             webBrowser.AllowNavigation = true;
-            //var path = Path.Combine("file:///", AppDomain.CurrentDomain.BaseDirectory, "data", "index.html");
-            //webBrowser.Navigate(path);
-            webBrowser.Navigate("http://localhost:8088/");
+            webBrowser.Navigate("http://moroz69off.coolpage.biz/");
         }
     }
 }
