@@ -217,7 +217,7 @@ namespace M_AuraLoad_F7
             if (auraBlue < 0) auraBlue = 0;
             auraMaterial.Diffuse = Color.FromArgb(255, auraRed, 255, auraBlue);
             AQuadr.CreateAura(openGLControl.OpenGL, aPolygon);
-            if (isRotate) AQuadr.rquad += 4f;
+            if (isRotate) AQuadr.rquad += 5.555f;
         }
     }
 }
