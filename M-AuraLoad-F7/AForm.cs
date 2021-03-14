@@ -32,9 +32,9 @@ namespace M_AuraLoad_F7
         private int auraBlue = 0;
         private int auraRed = 0;
         private Material auraMaterial = new Material();
+        private Material humanMaterial = new Material();
         private Polygon aPolygon;
         AuraQuad AQuadr = new AuraQuad();
-        private Material humanMaterial = new Material();
         public OpenGLControl openGLControl;
         private bool isRotate = true;
 
@@ -91,10 +91,10 @@ namespace M_AuraLoad_F7
             sceneControl.Scene.SceneContainer.Children[0]
                 .RemoveChild(sceneControl.Scene.SceneContainer.Children[0].Children[0]);
 
-            humanMaterial.Diffuse = Color.FromArgb(255, 100, 100, 100);
+            //humanMaterial.Diffuse = Color.FromArgb(255, 100, 100, 100);
 
-            auraMaterial.Diffuse = Color.FromArgb(50, auraRed, 255, auraBlue);
-            auraMaterial.Specular = Color.FromArgb(0, 0, 0, 0);
+            //auraMaterial.Diffuse = Color.FromArgb(50, auraRed, 255, auraBlue);
+            //auraMaterial.Specular = Color.FromArgb(0, 0, 0, 0);
 
             // Lighting the scee
             SceneElement lightsFolder = sceneControl.Scene.SceneContainer.Children[1];
@@ -115,7 +115,7 @@ namespace M_AuraLoad_F7
         private void LoadHuman(bool isMale)
         {
             if (isMale) path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data", "maleMin.obj");
-            else path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data", "femaleMin.obj");
+            else path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data", "female07.001.obj");
             ObjFileFormat obj = new ObjFileFormat();
             Scene sceneHumanObject = obj.LoadData(path);
             foreach (Asset asset in sceneHumanObject.Assets) sceneControl.Scene.Assets.Add(asset);
@@ -129,12 +129,12 @@ namespace M_AuraLoad_F7
                 float maxExtent = extent.Max();
                 float scaleFactor = maxExtent > 10 ? 10.0f / maxExtent : 1;
                 polygon.Parent.RemoveChild(polygon);
-                polygon.Transformation.RotateX = 180; // 
+                polygon.Transformation.RotateX = 90;
                 polygon.Transformation.ScaleX = scaleFactor;
                 polygon.Transformation.ScaleY = scaleFactor;
                 polygon.Transformation.ScaleZ = scaleFactor;
-                polygon.Material = humanMaterial;
-                polygon.Material.Push(sceneControl.OpenGL);
+                //polygon.Material = humanMaterial;
+                //polygon.Material.Push(sceneControl.OpenGL);
                 polygon.Freeze(sceneControl.OpenGL);
                 polygon.AddEffect(new OpenGLAttributesEffect());
                 polygon.AddEffect(arcBallEffect);
@@ -147,7 +147,7 @@ namespace M_AuraLoad_F7
         /// </summary>
         private void LoadAura()
         {
-            string apath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data", "auraCuttb.obj");
+            string apath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data", "aura07.001.obj");
             ObjFileFormat obj = new ObjFileFormat();
             Scene sceneAuraObject = obj.LoadData(apath);
             List<Polygon> polygons = sceneAuraObject.SceneContainer.Traverse<Polygon>().ToList();
@@ -162,15 +162,15 @@ namespace M_AuraLoad_F7
                 float scaleFactor = maxExtent > 10 ? 10.0f / maxExtent : 1;
                 polygon.Parent.RemoveChild(polygon);
                 polygon.Transformation.RotateX = 90; // 
-                polygon.Transformation.ScaleX = scaleFactor * 6;
-                polygon.Transformation.ScaleY = scaleFactor * 6;
-                polygon.Transformation.ScaleZ = scaleFactor * 6;
-                polygon.Material = auraMaterial;
+                polygon.Transformation.ScaleX = scaleFactor * 1.25F;
+                polygon.Transformation.ScaleY = scaleFactor * 1.25F;
+                polygon.Transformation.ScaleZ = scaleFactor * 1.25F;
+                //polygon.Material = auraMaterial;
                 polygon.Freeze(sceneControl.OpenGL);
                 polygon.AddEffect(new OpenGLAttributesEffect());
                 polygon.AddEffect(arcBallEffect);
                 
-                //sceneControl.Scene.SceneContainer.AddChild(polygon);
+                sceneControl.Scene.SceneContainer.AddChild(polygon);
             }
         }
 
