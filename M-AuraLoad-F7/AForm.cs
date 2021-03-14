@@ -34,7 +34,7 @@ namespace M_AuraLoad_F7
         private Material auraMaterial = new Material();
         private Material humanMaterial = new Material();
         private Polygon aPolygon;
-        AuraQuad AQuadr = new AuraQuad();
+        //AuraQuad AQuadr = new AuraQuad();
         public OpenGLControl openGLControl;
         private bool isRotate = true;
 
@@ -59,17 +59,13 @@ namespace M_AuraLoad_F7
             controlLabel.Click += new EventHandler(ConrolLabelClick);
             controlLabel.DoubleClick += new EventHandler(ConrolLabelDoubleClick);
             controlLabel.Name = "Label";
-            controlLabel.Text = "Rotate ";
+            controlLabel.Text = "Control label";
             controlLabel.BackColor = Color.White;
             controlLabel.Width = 350;
             controlLabel.Height = 20;
             sceneControl.Controls.Add(controlLabel);
 
             //sceneControl.Controls.Add(openGLControl);
-
-            // End Test add control
-            //=================================
-
 
             //sceneControl.OpenGL.PolygonMode(FaceMode.FrontAndBack, PolygonMode.Lines);
             //sceneControl.OpenGL.Enable(OpenGL.GL_COLOR_MATERIAL);
@@ -113,9 +109,12 @@ namespace M_AuraLoad_F7
         {
             if (isMale) path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data", "maleMin.obj");
             else path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data", "female07.001.obj");
+
             ObjFileFormat obj = new ObjFileFormat();
             Scene sceneHumanObject = obj.LoadData(path);
+
             foreach (Asset asset in sceneHumanObject.Assets) sceneControl.Scene.Assets.Add(asset);
+
             List<Polygon> polygons = sceneHumanObject.SceneContainer.Traverse<Polygon>().ToList();
             foreach (Polygon polygon in polygons)
             {
@@ -124,15 +123,15 @@ namespace M_AuraLoad_F7
                 var extent = new float[3];
                 boundingVolume.GetBoundDimensions(out extent[0], out extent[1], out extent[2]);
                 float maxExtent = extent.Max();
-                float scaleFactor = maxExtent > 10 ? 10.0f / maxExtent : 1;
                 polygon.Parent.RemoveChild(polygon);
-                polygon.Transformation.RotateX = 90;
+                polygon.Transformation.RotateX = 0;
+                float scaleFactor = maxExtent > 10 ? 10.0f / maxExtent : 1;
                 polygon.Transformation.ScaleX = scaleFactor;
                 polygon.Transformation.ScaleY = scaleFactor;
                 polygon.Transformation.ScaleZ = scaleFactor;
                 //polygon.Material = humanMaterial;
                 //polygon.Material.Push(sceneControl.OpenGL);
-                polygon.Freeze(sceneControl.OpenGL);
+                //polygon.Freeze(sceneControl.OpenGL);
                 polygon.AddEffect(new OpenGLAttributesEffect());
                 polygon.AddEffect(arcBallEffect);
                 sceneControl.Scene.SceneContainer.AddChild(polygon);
@@ -148,7 +147,7 @@ namespace M_AuraLoad_F7
             ObjFileFormat obj = new ObjFileFormat();
             Scene sceneAuraObject = obj.LoadData(apath);
             List<Polygon> polygons = sceneAuraObject.SceneContainer.Traverse<Polygon>().ToList();
-            aPolygon = polygons[0];
+            //aPolygon = polygons[0];
             foreach (Polygon polygon in polygons)
             {
                 polygon.Name = "AURA";
@@ -158,12 +157,12 @@ namespace M_AuraLoad_F7
                 float maxExtent = extent.Max();
                 float scaleFactor = maxExtent > 10 ? 10.0f / maxExtent : 1;
                 polygon.Parent.RemoveChild(polygon);
-                polygon.Transformation.RotateX = 90; // 
+                polygon.Transformation.RotateX = 0; // 
                 polygon.Transformation.ScaleX = scaleFactor * 1.25F;
                 polygon.Transformation.ScaleY = scaleFactor * 1.25F;
                 polygon.Transformation.ScaleZ = scaleFactor * 1.25F;
                 //polygon.Material = auraMaterial;
-                polygon.Freeze(sceneControl.OpenGL);
+                //polygon.Freeze(sceneControl.OpenGL);
                 polygon.AddEffect(new OpenGLAttributesEffect());
                 polygon.AddEffect(arcBallEffect);
                 
@@ -181,23 +180,23 @@ namespace M_AuraLoad_F7
         private void ConrolLabelClick(object sender, EventArgs e)
         {
             isRotate = false;
-            AQuadr.rquad = 0;
+            //AQuadr.rquad = 0;
         }
 
         private void sceneControl_MouseDown(object sender, MouseEventArgs e)
         {
             arcBallEffect.ArcBall.SetBounds(sceneControl.Width, sceneControl.Height);
-            arcBallEffect.ArcBall.MouseDown(e.X/2, e.Y/2);
+            arcBallEffect.ArcBall.MouseDown(e.X, e.Y);
         }
 
         private void sceneControl_MouseMove(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left) arcBallEffect.ArcBall.MouseMove(e.X/2, e.Y/2);
+            if (e.Button == MouseButtons.Left) arcBallEffect.ArcBall.MouseMove(e.X, e.Y);
         }
 
         private void sceneControl_MouseUp(object sender, MouseEventArgs e)
         {
-            arcBallEffect.ArcBall.MouseUp(e.X/2, e.Y/2);
+            arcBallEffect.ArcBall.MouseUp(e.X, e.Y);
         }
         #endregion mouse events
 
@@ -214,7 +213,7 @@ namespace M_AuraLoad_F7
             if (auraBlue < 0) auraBlue = 0;
             //auraMaterial.Diffuse = Color.FromArgb(255, auraRed, 255, auraBlue);
             //AQuadr.CreateAura(openGLControl.OpenGL, aPolygon);
-            if (isRotate) AQuadr.rquad += 5.555f;
+            //if (isRotate) AQuadr.rquad += 5.555f;
         }
     }
 }
