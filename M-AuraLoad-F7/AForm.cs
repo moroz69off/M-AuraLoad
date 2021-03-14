@@ -62,7 +62,7 @@ namespace M_AuraLoad_F7
             controlLabel.Click += new EventHandler(ConrolLabelClick);
             controlLabel.DoubleClick += new EventHandler(ConrolLabelDoubleClick);
             controlLabel.Name = "Label";
-            controlLabel.Text = "Rotate " + aPolygon.Faces.Count;
+            controlLabel.Text = "Rotate ";
             controlLabel.BackColor = Color.White;
             controlLabel.Width = 350;
             controlLabel.Height = 20;
