@@ -41,7 +41,7 @@ namespace M_AuraLoad_F7
         public AForm()
         {
             InitializeComponent();
-            openGLControl = new OpenGLControl();
+            //openGLControl = new OpenGLControl();
             LoadHuman(isMale);
             LoadAura();
         }
@@ -53,11 +53,8 @@ namespace M_AuraLoad_F7
         /// <param name="e">System.EventArgs</param>
         private void sceneControl_Load(object sender, EventArgs e)
         {
-            //=================================
-            // Test add control
-
-            openGLControl.BackColor = Color.FromArgb(0, 0, 0, 0);
-            openGLControl.Dock = DockStyle.Fill;
+            //openGLControl.BackColor = Color.FromArgb(0, 0, 0, 0);
+            //openGLControl.Dock = DockStyle.Fill;
             Label controlLabel = new Label();
             controlLabel.Click += new EventHandler(ConrolLabelClick);
             controlLabel.DoubleClick += new EventHandler(ConrolLabelDoubleClick);
@@ -66,9 +63,9 @@ namespace M_AuraLoad_F7
             controlLabel.BackColor = Color.White;
             controlLabel.Width = 350;
             controlLabel.Height = 20;
-            openGLControl.Controls.Add(controlLabel);
+            sceneControl.Controls.Add(controlLabel);
 
-            sceneControl.Controls.Add(openGLControl);
+            //sceneControl.Controls.Add(openGLControl);
 
             // End Test add control
             //=================================
@@ -170,7 +167,7 @@ namespace M_AuraLoad_F7
                 polygon.AddEffect(new OpenGLAttributesEffect());
                 polygon.AddEffect(arcBallEffect);
                 
-                sceneControl.Scene.SceneContainer.AddChild(polygon);
+                //sceneControl.Scene.SceneContainer.AddChild(polygon);
             }
         }
 
@@ -215,8 +212,8 @@ namespace M_AuraLoad_F7
             if (auraRed < 0) auraRed = 0;
             if (auraBlue > 255) auraBlue = 255;
             if (auraBlue < 0) auraBlue = 0;
-            auraMaterial.Diffuse = Color.FromArgb(255, auraRed, 255, auraBlue);
-            AQuadr.CreateAura(openGLControl.OpenGL, aPolygon);
+            //auraMaterial.Diffuse = Color.FromArgb(255, auraRed, 255, auraBlue);
+            //AQuadr.CreateAura(openGLControl.OpenGL, aPolygon);
             if (isRotate) AQuadr.rquad += 5.555f;
         }
     }
