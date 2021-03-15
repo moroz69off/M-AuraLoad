@@ -85,7 +85,7 @@ namespace M_AuraLoad_F7
                 .RemoveChild(sceneControl.Scene.SceneContainer.Children[0].Children[0]);
 
             //humanMaterial.Diffuse = Color.FromArgb(255, 100, 100, 100);
-
+            //sceneControl.Scene.SceneContainer.AddEffect(arcBallEffect);
             //auraMaterial.Diffuse = Color.FromArgb(50, auraRed, 255, auraBlue);
             //auraMaterial.Specular = Color.FromArgb(0, 0, 0, 0);
 
@@ -133,7 +133,7 @@ namespace M_AuraLoad_F7
                 //polygon.Material.Push(sceneControl.OpenGL);
                 //polygon.Freeze(sceneControl.OpenGL);
                 polygon.AddEffect(new OpenGLAttributesEffect());
-                polygon.AddEffect(arcBallEffect);
+                //polygon.AddEffect(arcBallEffect);
                 sceneControl.Scene.SceneContainer.AddChild(polygon);
             }
         }
@@ -164,7 +164,7 @@ namespace M_AuraLoad_F7
                 //polygon.Material = auraMaterial;
                 //polygon.Freeze(sceneControl.OpenGL);
                 polygon.AddEffect(new OpenGLAttributesEffect());
-                polygon.AddEffect(arcBallEffect);
+                //polygon.AddEffect(arcBallEffect);
                 
                 //sceneControl.Scene.SceneContainer.AddChild(polygon);
             }
